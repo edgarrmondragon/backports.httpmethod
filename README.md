@@ -3,7 +3,7 @@
 [![PyPI - Version](https://img.shields.io/pypi/v/backports.httpmethod.svg)](https://pypi.org/project/backports.httpmethod)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/backports-httpmethod.svg)](https://pypi.org/project/backports.httpmethod)
 
-A backport of Python 3.11+ `http.HTTPMethod` enum for Python 3.7+.
+A backport of Python 3.11+ [`http.HTTPMethod`](https://docs.python.org/3/library/http.html#http.HTTPMethod) enum for Python 3.7+.
 
 -----
 
