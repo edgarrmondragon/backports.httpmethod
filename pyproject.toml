@@ -1,0 +1,166 @@
+[build-system]
+build-backend = "hatchling.build"
+requires = [
+  "hatch-vcs",
+  "hatchling",
+]
+
+[project]
+name = "backports-httpmethod"
+description = "A backport of Python 3.11+ `http.HTTPMethod` enum"
+readme = "README.md"
+keywords = [
+  "backports",
+  "enum",
+  "http",
+  "httpmethod",
+]
+license = "MIT"
+authors = [
+  { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" },
+]
+requires-python = ">=3.7"
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = [
+  "version",
+]
+dependencies = [
+  "backports.strenum",
+]
+[project.optional-dependencies]
+dev = [
+  "backports.httpmethod[test]",
+]
+test = [
+  "pytest",
+]
+[project.urls]
+Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
+Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
+Source = "https://github.com/edgarrmondragon/backports.httpmethod"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/backports"]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.envs.test]
+features = ["test"]
+[tool.hatch.envs.test.scripts]
+test = "pytest {args:tests}"
+
+[[tool.hatch.envs.test.matrix]]
+python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.lint]
+dependencies = [
+  "mypy>=1.0.0",
+  "ruff>=0.1.0",
+]
+[tool.hatch.envs.lint.scripts]
+typing = "mypy --install-types --non-interactive --explicit-package-bases {args:src/backports/httpmethod tests}"
+style = [
+  "ruff check {args:.}",
+  "ruff format --check {args:.}",
+]
+fmt = [
+  "ruff check --fix {args:.}",
+  "ruff format {args:.}",
+  "style",
+]
+all = [
+  "style",
+  "typing",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py37"
+
+[tool.ruff.lint]
+select = [
+  "A",
+  "ARG",
+  "B",
+  "C",
+  "COM",
+  "DTZ",
+  "E",
+  "EM",
+  "F",
+  "FBT",
+  "I",
+  "ICN",
+  "ISC",
+  "N",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "Q",
+  "RUF",
+  "S",
+  "T",
+  "TID",
+  "UP",
+  "W",
+  "YTT",
+]
+ignore = [
+  # Allow non-abstract empty methods in abstract base classes
+  "B027",
+  # Allow boolean positional values in function calls, like `dict.get(... True)`
+  "FBT003",
+  # Ignore checks for possible passwords
+  "S105", "S106", "S107",
+  # Ignore complexity
+  "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
+  # Conflict with the Ruff formatter
+  "COM812", "ISC001",
+]
+unfixable = [
+  # Don't touch unused imports
+  "F401",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["backports_httpmethod"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.coverage.run]
+source_pkgs = ["backports", "tests"]
+branch = true
+parallel = true
+
+[tool.coverage.paths]
+backports_httpmethod = ["src/backports/httpmethod", "*/backports.httpmethod/src/backports/httpmethod"]
+tests = ["tests", "*/backports.httpmethod/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
+
+[tool.mypy]
+mypy_path = "src"
