@@ -75,6 +75,6 @@ jobs:
         pipx install hatch
     - name: Run tests
       env:
-        HATCH_ENV: "test.py${{ matrix.python-version }}
+        HATCH_ENV: "test.py${{ matrix.python-version }}"
       run: |
         hatch run test
