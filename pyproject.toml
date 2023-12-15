@@ -39,17 +39,15 @@ dynamic = [
 dependencies = [
   "backports.strenum",
 ]
-[project.optional-dependencies]
-dev = [
+optional-dependencies.dev = [
   "backports.httpmethod[test]",
 ]
-test = [
+optional-dependencies.test = [
   "pytest",
 ]
-[project.urls]
-Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
-Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
-Source = "https://github.com/edgarrmondragon/backports.httpmethod"
+urls.Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
+urls.Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
+urls.Source = "https://github.com/edgarrmondragon/backports.httpmethod"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/backports"]
