@@ -43,6 +43,7 @@ optional-dependencies.dev = [
   "backports.httpmethod[test]",
 ]
 optional-dependencies.test = [
+  "coverage[toml]",
   "pytest",
 ]
 urls.Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
@@ -57,8 +58,14 @@ source = "vcs"
 
 [tool.hatch.envs.test]
 features = ["test"]
+[tool.hatch.envs.test.overrides]
+env.GITHUB_ACTIONS.dev-mode = { value = false, if = ["true"] }
+matrix.python.env-vars = [
+  { key = "COVERAGE_CORE", value = "sysmon", if = ["3.12", "3.13"] }
+]
 [tool.hatch.envs.test.scripts]
 test = "pytest {args:tests}"
+cov = "coverage run -m pytest {args:tests}"
 
 [[tool.hatch.envs.test.matrix]]
 python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
