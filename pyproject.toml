@@ -43,7 +43,7 @@ optional-dependencies.dev = [
   "backports.httpmethod[test]",
 ]
 optional-dependencies.test = [
-  "coverage[toml]>=7.4",
+  "coverage[toml]",
   "pytest",
 ]
 urls.Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
