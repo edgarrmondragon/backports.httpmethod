@@ -59,6 +59,7 @@ source = "vcs"
 [tool.hatch.envs.test]
 features = ["test"]
 [tool.hatch.envs.test.overrides]
+env.GITHUB_ACTIONS.dev-mode = { value = false, if = ["true"] }
 matrix.python.env-vars = [
   { key = "COVERAGE_CORE", value = "sysmon", if = ["3.12", "3.13"] }
 ]
