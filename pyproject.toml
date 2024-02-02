@@ -16,6 +16,9 @@ keywords = [
   "httpmethod",
 ]
 license.file = "LICENSE"
+maintainers = [
+  { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" },
+]
 authors = [
   { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" },
 ]
@@ -118,14 +121,6 @@ select = [
   "YTT",
 ]
 ignore = [
-  # Allow non-abstract empty methods in abstract base classes
-  "B027",
-  # Allow boolean positional values in function calls, like `dict.get(... True)`
-  "FBT003",
-  # Ignore checks for possible passwords
-  "S105", "S106", "S107",
-  # Ignore complexity
-  "C901", "PLR0911", "PLR0912", "PLR0913", "PLR0915",
   # Conflict with the Ruff formatter
   "COM812", "ISC001",
 ]
@@ -134,29 +129,13 @@ unfixable = [
   "F401",
 ]
 
-[tool.ruff.lint.isort]
-known-first-party = ["backports_httpmethod"]
-
 [tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
-
-[tool.ruff.lint.per-file-ignores]
-# Tests can use magic values, and relative imports
-"tests/**/*" = ["PLR2004", "TID252"]
 
 [tool.pyproject-fmt]
 indent = 2
 keep_full_version = true
 max_supported_python = "3.13"
-
-[tool.coverage.run]
-source_pkgs = ["backports", "tests"]
-branch = true
-parallel = true
-
-[tool.coverage.paths]
-backports_httpmethod = ["src/backports/httpmethod", "*/backports.httpmethod/src/backports/httpmethod"]
-tests = ["tests", "*/backports.httpmethod/tests"]
 
 [tool.coverage.report]
 exclude_also = [
