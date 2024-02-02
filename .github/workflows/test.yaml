@@ -35,14 +35,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
+      id: setup-python
       with:
         cache: pip
-        python-version: "3.10"
+        python-version: "3.12"
     - name: Install dependencies
       env:
         PIP_CONSTRAINT: .github/workflows/constraints.txt
       run: |
-        pipx install hatch
+        pipx install --python '${{ steps.setup-python.outputs.python-path }}' hatch
     - name: Run lint
       env:
         HATCH_ENV: lint
@@ -52,7 +53,7 @@ jobs:
   test:
     name: Pytest (Python ${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.python-version == '3.12' }}
+    continue-on-error: ${{ matrix.python-version == '3.13' }}
     strategy:
       fail-fast: false
       matrix:
@@ -66,18 +67,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
+      id: setup-python
       with:
         cache: pip
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
         architecture: x64
-    - name: Install dependencies
-      env:
-        PIP_CONSTRAINT: .github/workflows/constraints.txt
-      run: |
-        pipx install hatch
-    - name: Run tests
-      env:
-        HATCH_ENV: "test.py${{ matrix.python-version }}"
-      run: |
-        hatch run test
+    - run: pip install .
+    - run: python -Im unittest -v
