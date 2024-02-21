@@ -56,9 +56,6 @@ source = "vcs"
 [tool.hatch.envs.default]
 [tool.hatch.envs.default.overrides]
 env.GITHUB_ACTIONS.dev-mode = { value = false, if = ["true"] }
-matrix.python.env-vars = [
-  { key = "COVERAGE_CORE", value = "sysmon", if = ["3.12", "3.13"] }
-]
 [tool.hatch.envs.default.scripts]
 test = "python -Im unittest {args}"
 
