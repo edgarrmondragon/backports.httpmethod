@@ -86,7 +86,6 @@ all = [
 [tool.ruff]
 line-length = 120
 preview = true
-target-version = "py37"
 
 [tool.ruff.lint]
 select = [
