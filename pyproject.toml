@@ -41,26 +41,39 @@ dynamic = [
   "version",
 ]
 dependencies = [
-  'backports.strenum; python_version < "3.11"',
+  "backports-strenum; python_version<'3.11'",
 ]
 urls.Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
 urls.Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
 urls.Source = "https://github.com/edgarrmondragon/backports.httpmethod"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/backports"]
+packages = [
+  "src/backports",
+]
 
 [tool.hatch.version]
 source = "vcs"
 
 [tool.hatch.envs.default]
 [tool.hatch.envs.default.overrides]
-env.GITHUB_ACTIONS.dev-mode = { value = false, if = ["true"] }
+env.GITHUB_ACTIONS.dev-mode = { value = false, if = [
+  "true",
+] }
 [tool.hatch.envs.default.scripts]
 test = "python -Im unittest {args}"
 
 [[tool.hatch.envs.all.matrix]]
-python = ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "pypy"]
+python = [
+  "3.7",
+  "3.8",
+  "3.9",
+  "3.10",
+  "3.11",
+  "3.12",
+  "3.13",
+  "pypy",
+]
 
 [tool.hatch.envs.lint]
 dependencies = [
@@ -118,7 +131,8 @@ select = [
 ]
 ignore = [
   # Conflict with the Ruff formatter
-  "COM812", "ISC001",
+  "COM812",
+  "ISC001",
 ]
 unfixable = [
   # Don't touch unused imports
