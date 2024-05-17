@@ -53,25 +53,40 @@ jobs:
   test:
     name: Pytest (Python ${{ matrix.python-version }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
-    continue-on-error: ${{ matrix.python-version == '3.13' }}
+    continue-on-error: ${{ matrix.python-version == '3.13' || matrix.python-version == '3.14' }}
     strategy:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11", "3.12", "3.13", "pypy3.10"]
+        python-version:
+        - "3.7"
+        - "3.8"
+        - "3.9"
+        - "3.10"
+        - "3.11"
+        - "3.12"
+        - "3.13"
+        - "pypy3.10"
         include:
         - python-version: "3.12"
           os: "windows-latest"
         - python-version: "3.12"
           os: "macos-latest"
+        - python-version: "3.14-dev"
+          os: "ubuntu-latest"
+          nightly: true
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       id: setup-python
+      if: ${{ !matrix.nightly }}
       with:
         cache: pip
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
-        architecture: x64
+    - uses: deadsnakes/action@v3.1.0
+      if: ${{ matrix.nightly }}
+      with:
+        python-version: ${{ matrix.python-version}}
     - run: pip install .
     - run: python -Im unittest -v
