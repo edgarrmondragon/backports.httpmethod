@@ -73,5 +73,4 @@ jobs:
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
         architecture: x64
-    - run: pip install .
     - run: python -Im unittest -v
