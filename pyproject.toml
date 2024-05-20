@@ -100,8 +100,7 @@ all = [
 line-length = 120
 preview = true
 
-[tool.ruff.lint]
-select = [
+lint.select = [
   "A",
   "ARG",
   "B",
@@ -129,18 +128,16 @@ select = [
   "W",
   "YTT",
 ]
-ignore = [
+lint.unfixable = [
+  # Don't touch unused imports
+  "F401",
+]
+lint.flake8-tidy-imports.ban-relative-imports = "all"
+lint.ignore = [
   # Conflict with the Ruff formatter
   "COM812",
   "ISC001",
 ]
-unfixable = [
-  # Don't touch unused imports
-  "F401",
-]
-
-[tool.ruff.lint.flake8-tidy-imports]
-ban-relative-imports = "all"
 
 [tool.pyproject-fmt]
 indent = 2
