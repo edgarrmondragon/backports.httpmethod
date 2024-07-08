@@ -34,6 +34,7 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
@@ -143,7 +144,7 @@ lint.flake8-tidy-imports.ban-relative-imports = "all"
 [tool.pyproject-fmt]
 indent = 2
 keep_full_version = true
-max_supported_python = "3.13"
+max_supported_python = "3.14"
 
 [tool.coverage.report]
 exclude_also = [
