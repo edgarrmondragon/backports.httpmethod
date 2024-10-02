@@ -85,7 +85,7 @@ jobs:
         cache: pip
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
-    - uses: deadsnakes/action@v3.1.0
+    - uses: deadsnakes/action@v3.2.0
       if: ${{ matrix.nightly }}
       with:
         python-version: ${{ matrix.python-version}}
