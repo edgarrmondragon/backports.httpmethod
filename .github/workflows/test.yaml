@@ -59,7 +59,6 @@ jobs:
       matrix:
         os: ["ubuntu-latest"]
         python-version:
-        - "3.7"
         - "3.8"
         - "3.9"
         - "3.10"
@@ -69,9 +68,11 @@ jobs:
         - "3.14"
         - "pypy3.10"
         include:
-        - python-version: "3.12"
+        - python-version: "3.7"
+          os: "ubuntu-22.04"
+        - python-version: "3.13"
           os: "windows-latest"
-        - python-version: "3.12"
+        - python-version: "3.13"
           os: "macos-latest"
         - python-version: "3.14-dev"
           os: "ubuntu-latest"
