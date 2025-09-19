@@ -66,7 +66,7 @@ jobs:
         - "3.12"
         - "3.13"
         - "3.14"
-        - "pypy3.10"
+        - "pypy3.11"
         include:
         - python-version: "3.7"
           os: "ubuntu-22.04"
@@ -74,21 +74,13 @@ jobs:
           os: "windows-latest"
         - python-version: "3.13"
           os: "macos-latest"
-        - python-version: "3.14-dev"
-          os: "ubuntu-latest"
-          nightly: true
     steps:
     - uses: actions/checkout@v5
     - uses: actions/setup-python@v6
       id: setup-python
-      if: ${{ !matrix.nightly }}
       with:
         cache: pip
         python-version: ${{ matrix.python-version }}
         allow-prereleases: true
-    - uses: deadsnakes/action@v3.2.0
-      if: ${{ matrix.nightly }}
-      with:
-        python-version: ${{ matrix.python-version}}
     - run: pip install .
     - run: python -Im unittest -v
