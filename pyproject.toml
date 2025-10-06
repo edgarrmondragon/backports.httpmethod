@@ -48,6 +48,19 @@ urls.Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#re
 urls.Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
 urls.Source = "https://github.com/edgarrmondragon/backports.httpmethod"
 
+[dependency-groups]
+dev = [
+  { include-group = "lint" },
+  { include-group = "typing" },
+]
+lint = [
+  "pyproject-fmt>=0.13.1",
+  "ruff>=0.13.3",
+]
+typing = [
+  "mypy>=1.0.0",
+]
+
 [tool.hatch.build.targets.wheel]
 packages = [
   "src/backports",
@@ -55,47 +68,6 @@ packages = [
 
 [tool.hatch.version]
 source = "vcs"
-
-[tool.hatch.envs.default]
-[tool.hatch.envs.default.overrides]
-env.GITHUB_ACTIONS.dev-mode = { value = false, if = [
-  "true",
-] }
-[tool.hatch.envs.default.scripts]
-test = "python -Im unittest {args}"
-
-[[tool.hatch.envs.all.matrix]]
-python = [
-  "3.7",
-  "3.8",
-  "3.9",
-  "3.10",
-  "3.11",
-  "3.12",
-  "3.13",
-  "pypy",
-]
-
-[tool.hatch.envs.lint]
-dependencies = [
-  "mypy>=1.0.0",
-  "ruff>=0.1.0",
-]
-[tool.hatch.envs.lint.scripts]
-typing = "mypy --install-types --non-interactive --explicit-package-bases {args:src/backports/httpmethod tests}"
-style = [
-  "ruff check {args:.}",
-  "ruff format --check {args:.}",
-]
-fmt = [
-  "ruff check --fix {args:.}",
-  "ruff format {args:.}",
-  "style",
-]
-all = [
-  "style",
-  "typing",
-]
 
 [tool.ruff]
 line-length = 120
@@ -151,6 +123,63 @@ exclude_also = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
+]
+
+[tool.tox]
+min_version = "4.22"
+env_list = [
+  "lint",
+  "typing",
+  "3.7",
+  "3.8",
+  "3.9",
+  "3.10",
+  "3.11",
+  "3.12",
+  "3.13",
+  "3.14",
+  "pypy",
+]
+
+[tool.tox.env_run_base]
+description = "unit tests"
+commands = [
+  [
+    "python",
+    "-Im",
+    "unittest",
+  ],
+]
+
+[tool.tox.env.lint]
+description = "lint"
+labels = [ "lint" ]
+dependency_groups = [
+  "lint",
+]
+commands = [
+  [ "pyproject-fmt", "pyproject.toml" ],
+  [ "ruff", "check", { replace = "posargs", default = [  ], extend = true } ],
+  [ "ruff", "format", { replace = "posargs", default = [  ], extend = true } ],
+]
+
+[tool.tox.env.typing]
+description = "type check"
+labels = [ "lint" ]
+dependency_groups = [
+  "typing",
+]
+commands = [
+  [
+    "mypy",
+    "--install-types",
+    "--non-interactive",
+    "--explicit-package-bases",
+    { replace = "posargs", default = [
+      "src/backports/httpmethod",
+      "tests",
+    ], extend = true },
+  ],
 ]
 
 [tool.mypy]
