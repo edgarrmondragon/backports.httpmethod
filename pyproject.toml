@@ -150,6 +150,7 @@ commands = [
     "python",
     "-Im",
     "unittest",
+    "-v",
   ],
 ]
 
