@@ -143,17 +143,6 @@ env_list = [
   "pypy",
 ]
 
-[tool.tox.env_run_base]
-description = "unit tests"
-commands = [
-  [
-    "python",
-    "-Im",
-    "unittest",
-    "-v",
-  ],
-]
-
 [tool.tox.env.lint]
 description = "lint"
 labels = [ "lint" ]
@@ -182,6 +171,17 @@ commands = [
       "src/backports/httpmethod",
       "tests",
     ], extend = true },
+  ],
+]
+
+[tool.tox.env_run_base]
+description = "unit tests"
+commands = [
+  [
+    "python",
+    "-Im",
+    "unittest",
+    "-v",
   ],
 ]
 
