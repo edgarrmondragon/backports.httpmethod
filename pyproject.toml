@@ -62,18 +62,15 @@ typing = [
   "mypy>=1.0.0",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = [
+[tool.hatch]
+build.targets.wheel.packages = [
   "src/backports",
 ]
-
-[tool.hatch.version]
-source = "vcs"
+version.source = "vcs"
 
 [tool.ruff]
 line-length = 120
 preview = true
-
 lint.select = [
   "A",
   "ARG",
@@ -107,7 +104,6 @@ lint.ignore = [
   "COM812",
   "ISC001",
 ]
-
 lint.unfixable = [
   # Don't touch unused imports
   "F401",
@@ -119,8 +115,8 @@ indent = 2
 keep_full_version = true
 max_supported_python = "3.15"
 
-[tool.coverage.report]
-exclude_also = [
+[tool.coverage]
+report.exclude_also = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
@@ -142,26 +138,22 @@ env_list = [
   "3.15",
   "pypy",
 ]
-
-[tool.tox.env.lint]
-description = "lint"
-labels = [ "lint" ]
-dependency_groups = [
+env.lint.description = "lint"
+env.lint.labels = [ "lint" ]
+env.lint.dependency_groups = [
   "lint",
 ]
-commands = [
+env.lint.commands = [
   [ "pyproject-fmt", "pyproject.toml" ],
-  [ "ruff", "check", { replace = "posargs", default = [  ], extend = true } ],
-  [ "ruff", "format", { replace = "posargs", default = [  ], extend = true } ],
+  [ "ruff", "check", { replace = "posargs", default = [], extend = true } ],
+  [ "ruff", "format", { replace = "posargs", default = [], extend = true } ],
 ]
-
-[tool.tox.env.typing]
-description = "type check"
-labels = [ "lint" ]
-dependency_groups = [
+env.typing.description = "type check"
+env.typing.labels = [ "lint" ]
+env.typing.dependency_groups = [
   "typing",
 ]
-commands = [
+env.typing.commands = [
   [
     "mypy",
     "--install-types",
@@ -173,10 +165,8 @@ commands = [
     ], extend = true },
   ],
 ]
-
-[tool.tox.env_run_base]
-description = "unit tests"
-commands = [
+env_run_base.description = "unit tests"
+env_run_base.commands = [
   [
     "python",
     "-Im",
