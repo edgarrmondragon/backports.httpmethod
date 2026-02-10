@@ -15,13 +15,6 @@ keywords = [
   "http",
   "httpmethod",
 ]
-license.file = "LICENSE"
-maintainers = [
-  { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" },
-]
-authors = [
-  { name = "Edgar Ramírez-Mondragón", email = "edgarrmondragon@hey.com" },
-]
 requires-python = ">=3.7"
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -45,9 +38,18 @@ dynamic = [
 dependencies = [
   "backports-strenum; python_version<'3.11'",
 ]
-urls.Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
-urls.Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
-urls.Source = "https://github.com/edgarrmondragon/backports.httpmethod"
+[[project.authors]]
+name = "Edgar Ramírez-Mondragón"
+email = "edgarrmondragon@hey.com"
+[project.license]
+file = "LICENSE"
+[[project.maintainers]]
+name = "Edgar Ramírez-Mondragón"
+email = "edgarrmondragon@hey.com"
+[project.urls]
+Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
+Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
+Source = "https://github.com/edgarrmondragon/backports.httpmethod"
 
 [dependency-groups]
 dev = [
@@ -63,15 +65,18 @@ typing = [
 ]
 
 [tool.hatch]
-build.targets.wheel.packages = [
+[tool.hatch.build]
+targets.wheel.packages = [
   "src/backports",
 ]
-version.source = "vcs"
+[tool.hatch.version]
+source = "vcs"
 
 [tool.ruff]
 line-length = 120
 preview = true
-lint.select = [
+[tool.ruff.lint]
+select = [
   "A",
   "ARG",
   "B",
@@ -99,24 +104,26 @@ lint.select = [
   "W",
   "YTT",
 ]
-lint.ignore = [
+ignore = [
   # Conflict with the Ruff formatter
   "COM812",
   "ISC001",
 ]
-lint.unfixable = [
+unfixable = [
   # Don't touch unused imports
   "F401",
 ]
-lint.flake8-tidy-imports.ban-relative-imports = "all"
+flake8-tidy-imports.ban-relative-imports = "all"
 
 [tool.pyproject-fmt]
 indent = 2
 keep_full_version = true
 max_supported_python = "3.15"
+table_format = "long"
 
 [tool.coverage]
-report.exclude_also = [
+[tool.coverage.report]
+exclude_also = [
   "no cov",
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
@@ -138,22 +145,23 @@ env_list = [
   "3.15",
   "pypy",
 ]
-env.lint.description = "lint"
-env.lint.labels = [ "lint" ]
-env.lint.dependency_groups = [
+[tool.tox.env]
+lint.description = "lint"
+lint.labels = [ "lint" ]
+lint.dependency_groups = [
   "lint",
 ]
-env.lint.commands = [
+lint.commands = [
   [ "pyproject-fmt", "pyproject.toml" ],
   [ "ruff", "check", { replace = "posargs", default = [], extend = true } ],
   [ "ruff", "format", { replace = "posargs", default = [], extend = true } ],
 ]
-env.typing.description = "type check"
-env.typing.labels = [ "lint" ]
-env.typing.dependency_groups = [
+typing.description = "type check"
+typing.labels = [ "lint" ]
+typing.dependency_groups = [
   "typing",
 ]
-env.typing.commands = [
+typing.commands = [
   [
     "mypy",
     "--install-types",
@@ -165,8 +173,10 @@ env.typing.commands = [
     ], extend = true },
   ],
 ]
-env_run_base.description = "unit tests"
-env_run_base.commands = [
+
+[tool.tox.env_run_base]
+description = "unit tests"
+commands = [
   [
     "python",
     "-Im",
