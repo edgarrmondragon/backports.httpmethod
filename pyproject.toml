@@ -45,7 +45,7 @@ email = "edgarrm358@gmail.com"
 file = "LICENSE"
 [[project.maintainers]]
 name = "Edgar Ramírez-Mondragón"
-email = "edgarrmondragon@hey.com"
+email = "edgarrm358@gmail.com"
 [project.urls]
 Documentation = "https://github.com/edgarrmondragon/backports.httpmethod#readme"
 Issues = "https://github.com/edgarrmondragon/backports.httpmethod/issues"
