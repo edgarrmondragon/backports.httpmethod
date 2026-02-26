@@ -40,7 +40,7 @@ dependencies = [
 ]
 [[project.authors]]
 name = "Edgar Ramírez-Mondragón"
-email = "edgarrmondragon@hey.com"
+email = "edgarrm358@gmail.com"
 [project.license]
 file = "LICENSE"
 [[project.maintainers]]
