@@ -30,10 +30,10 @@ else:
     from backports.httpmethod import HTTPMethod
 
 
-HTTPMethod.GET == 'GET'  # True
+HTTPMethod.GET == "GET"  # True
 HTTPMethod.GET.value  # 'GET'
 HTTPMethod.GET.description  # 'Retrieve the target.'
-list(HTTPMethod)[:3] # [<HTTPMethod.GET: 'GET'>, <HTTPMethod.HEAD: 'HEAD'>, <HTTPMethod.POST: 'POST'>]
+list(HTTPMethod)[:3]  # [<HTTPMethod.GET: 'GET'>, <HTTPMethod.HEAD: 'HEAD'>, <HTTPMethod.POST: 'POST'>]
 ```
 
 ## License
