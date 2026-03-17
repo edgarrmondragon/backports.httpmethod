@@ -121,6 +121,9 @@ keep_full_version = true
 max_supported_python = "3.15"
 table_format = "long"
 
+[tool.mypy]
+mypy_path = "src"
+
 [tool.coverage]
 [tool.coverage.report]
 exclude_also = [
@@ -184,6 +187,3 @@ commands = [
     "-v",
   ],
 ]
-
-[tool.mypy]
-mypy_path = "src"
