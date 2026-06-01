@@ -135,18 +135,18 @@ exclude_also = [
 [tool.tox]
 min_version = "4.22"
 env_list = [
-  "lint",
-  "typing",
-  "3.7",
-  "3.8",
-  "3.9",
-  "3.10",
-  "3.11",
-  "3.12",
-  "3.13",
-  "3.14",
   "3.15",
+  "3.14",
+  "3.13",
+  "3.12",
+  "3.11",
+  "3.10",
+  "3.9",
+  "3.8",
+  "3.7",
+  "lint",
   "pypy",
+  "typing",
 ]
 [tool.tox.env]
 lint.description = "lint"
