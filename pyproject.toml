@@ -15,6 +15,7 @@ keywords = [
   "http",
   "httpmethod",
 ]
+license = "MIT"
 requires-python = ">=3.7"
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -41,8 +42,6 @@ dependencies = [
 [[project.authors]]
 name = "Edgar Ramírez-Mondragón"
 email = "edgarrm358@gmail.com"
-[project.license]
-file = "LICENSE"
 [[project.maintainers]]
 name = "Edgar Ramírez-Mondragón"
 email = "edgarrm358@gmail.com"
@@ -57,19 +56,19 @@ dev = [
   { include-group = "typing" },
 ]
 lint = [
-  "pyproject-fmt>=0.13.1",
-  "ruff>=0.13.3",
+  "pyproject-fmt~=2.25.2",
+  "ruff~=0.15.20",
 ]
 typing = [
-  "mypy>=1.0.0",
+  "mypy~=2.2.0",
 ]
 
-[tool.hatch]
 [tool.hatch.build]
 targets.wheel.packages = [
   "src/backports",
 ]
 [tool.hatch.version]
+fallback-version = "0.0.0.dev0"
 source = "vcs"
 
 [tool.ruff]
@@ -123,14 +122,7 @@ table_format = "long"
 
 [tool.mypy]
 mypy_path = "src"
-
-[tool.coverage]
-[tool.coverage.report]
-exclude_also = [
-  "no cov",
-  "if __name__ == .__main__.:",
-  "if TYPE_CHECKING:",
-]
+enable_error_code = [ "ignore-without-code", "redundant-expr", "truthy-bool" ]
 
 [tool.tox]
 requires = [
@@ -138,27 +130,27 @@ requires = [
 ]
 env_list = [
   "lint",
-  { prefix = "3.", start = 7, stop = 15 },
+  { prefix = "3.", start = 7 },
   "pypy",
   "typing",
 ]
-[tool.tox.env]
-lint.description = "lint"
-lint.labels = [ "lint" ]
-lint.dependency_groups = [
+[tool.tox.env.lint]
+description = "lint"
+dependency_groups = [
   "lint",
 ]
-lint.commands = [
+commands = [
   [ "pyproject-fmt", "pyproject.toml" ],
   [ "ruff", "check", { replace = "posargs", default = [], extend = true } ],
   [ "ruff", "format", { replace = "posargs", default = [], extend = true } ],
 ]
-typing.description = "type check"
-typing.labels = [ "lint" ]
-typing.dependency_groups = [
+labels = [ "lint" ]
+[tool.tox.env.typing]
+description = "type check"
+dependency_groups = [
   "typing",
 ]
-typing.commands = [
+commands = [
   [
     "mypy",
     "--install-types",
@@ -170,6 +162,7 @@ typing.commands = [
     ], extend = true },
   ],
 ]
+labels = [ "lint" ]
 [tool.tox.env_run_base]
 description = "run unit tests on Python {base_python}"
 commands = [
