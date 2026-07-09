@@ -133,18 +133,12 @@ exclude_also = [
 ]
 
 [tool.tox]
-min_version = "4.22"
+requires = [
+  "tox>=4.55",
+]
 env_list = [
-  "3.15",
-  "3.14",
-  "3.13",
-  "3.12",
-  "3.11",
-  "3.10",
-  "3.9",
-  "3.8",
-  "3.7",
   "lint",
+  { prefix = "3.", start = 7, stop = 15 },
   "pypy",
   "typing",
 ]
@@ -176,9 +170,8 @@ typing.commands = [
     ], extend = true },
   ],
 ]
-
 [tool.tox.env_run_base]
-description = "unit tests"
+description = "run unit tests on Python {base_python}"
 commands = [
   [
     "python",
