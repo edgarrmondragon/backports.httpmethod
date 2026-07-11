@@ -13,7 +13,7 @@ class HTTPMethod(StrEnum):
 
     Methods from the following RFCs are all observed:
 
-        * RFC 7231: Hypertext Transfer Protocol (HTTP/1.1), obsoletes 2616
+        * RFC 9110: HTTP Semantics, obsoletes 7231, which obsoleted 2616
         * RFC 5789: PATCH Method for HTTP
     """
 
