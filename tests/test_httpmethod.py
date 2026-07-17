@@ -32,6 +32,6 @@ class TestHTTPMethod(unittest.TestCase):
 
     @unittest.skipIf(sys.version_info < (3, 11), "requires Python 3.11+")
     def test_equality(self):
-        from http import HTTPMethod as PyHTTPMethod  # noqa: PLC0415
+        from http import HTTPMethod as PyHTTPMethod  # ruff:ignore[import-outside-top-level]
 
         self.assertEqual(HTTPMethod.__members__, PyHTTPMethod.__members__)

@@ -1,3 +1,3 @@
-from ._httpmethod import HTTPMethod  # noqa: TID252
+from ._httpmethod import HTTPMethod  # ruff:ignore[relative-imports]
 
 __all__ = ["HTTPMethod"]

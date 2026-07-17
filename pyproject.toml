@@ -74,6 +74,7 @@ source = "vcs"
 [tool.ruff]
 line-length = 120
 preview = true
+required-version = ">=0.15.22"
 [tool.ruff.lint]
 select = [
   "A",
@@ -105,12 +106,11 @@ select = [
 ]
 ignore = [
   # Conflict with the Ruff formatter
-  "COM812",
-  "ISC001",
+  "missing-trailing-comma",
+  "single-line-implicit-string-concatenation",
 ]
 unfixable = [
-  # Don't touch unused imports
-  "F401",
+  "unused-import",
 ]
 flake8-tidy-imports.ban-relative-imports = "all"
 
