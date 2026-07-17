@@ -72,9 +72,9 @@ fallback-version = "0.0.0.dev0"
 source = "vcs"
 
 [tool.ruff]
+required-version = ">=0.15.22"
 line-length = 120
 preview = true
-required-version = ">=0.15.22"
 [tool.ruff.lint]
 select = [
   "A",
