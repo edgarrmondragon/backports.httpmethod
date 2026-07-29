@@ -7,6 +7,8 @@ requires = [
 
 [project]
 name = "backports-httpmethod"
+import-names = [ "backports.httpmethod" ]
+import-namespaces = [ "backports" ]
 description = "A backport of Python 3.11+ `http.HTTPMethod` enum"
 readme = "README.md"
 keywords = [
@@ -63,8 +65,8 @@ typing = [
   "mypy~=2.2.0",
 ]
 
-[tool.hatch.build]
-targets.wheel.packages = [
+[tool.hatch.build.targets.wheel]
+packages = [
   "src/backports",
 ]
 [tool.hatch.version]
