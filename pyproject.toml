@@ -41,10 +41,10 @@ dynamic = [
 dependencies = [
   "backports-strenum; python_version<'3.11'",
 ]
-[[project.authors]]
+[[project.maintainers]]
 name = "Edgar Ramírez-Mondragón"
 email = "edgarrm358@gmail.com"
-[[project.maintainers]]
+[[project.authors]]
 name = "Edgar Ramírez-Mondragón"
 email = "edgarrm358@gmail.com"
 [project.urls]
@@ -65,13 +65,13 @@ typing = [
   "mypy~=2.2.0",
 ]
 
+[tool.hatch.version]
+source = "vcs"
+fallback-version = "0.0.0.dev0"
 [tool.hatch.build.targets.wheel]
 packages = [
   "src/backports",
 ]
-[tool.hatch.version]
-fallback-version = "0.0.0.dev0"
-source = "vcs"
 
 [tool.ruff]
 required-version = ">=0.15.22"
