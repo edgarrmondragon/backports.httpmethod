@@ -58,7 +58,7 @@ dev = [
   { include-group = "typing" },
 ]
 lint = [
-  "pyproject-fmt~=2.25.2",
+  "pyproject-fmt~=2.29.4",
   "ruff~=0.15.20",
 ]
 typing = [
