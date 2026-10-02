@@ -62,7 +62,7 @@ lint = [
   "ruff~=0.15.20",
 ]
 typing = [
-  "mypy~=2.2.0",
+  "mypy~=2.3.1",
 ]
 
 [tool.hatch.build.targets.wheel]
