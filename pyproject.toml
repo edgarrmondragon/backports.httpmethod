@@ -59,7 +59,7 @@ dev = [
 ]
 lint = [
   "pyproject-fmt~=2.29.4",
-  "ruff~=0.15.20",
+  "ruff~=0.16.9",
 ]
 typing = [
   "mypy~=2.2.0",
