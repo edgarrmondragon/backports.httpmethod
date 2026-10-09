@@ -38,4 +38,4 @@ list(HTTPMethod)[:3]  # [<HTTPMethod.GET: 'GET'>, <HTTPMethod.HEAD: 'HEAD'>, <HT
 
 ## License
 
-`backports-httpmethod` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
+`backports-httpmethod` is distributed under the terms of the [PSF-2.0](https://spdx.org/licenses/PSF-2.0.html) license, as it is derived from the CPython standard library.
