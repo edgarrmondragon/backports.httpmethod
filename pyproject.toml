@@ -58,11 +58,11 @@ dev = [
   { include-group = "typing" },
 ]
 lint = [
-  "pyproject-fmt~=2.29.4",
-  "ruff~=0.16.9",
+  "pyproject-fmt~=2.30.1",
+  "ruff~=0.16.10",
 ]
 typing = [
-  "mypy~=2.2.0",
+  "mypy~=2.4.0",
 ]
 
 [tool.hatch.version]
@@ -74,7 +74,7 @@ packages = [
 ]
 
 [tool.ruff]
-required-version = ">=0.15.22"
+required-version = ">=0.16"
 line-length = 120
 preview = true
 [tool.ruff.lint]
