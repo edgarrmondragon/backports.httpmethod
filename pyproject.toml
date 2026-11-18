@@ -17,7 +17,8 @@ keywords = [
   "http",
   "httpmethod",
 ]
-license = "PSF-2.0"
+license = "MIT AND PSF-2.0"
+license-files = [ "LICENSE", "LICENSE-PSF" ]
 requires-python = ">=3.7"
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -169,6 +170,7 @@ labels = [ "lint" ]
 [tool.tox.env_run_base]
 description = "run unit tests on Python {base_python}"
 commands = [
+  [ "python", "-V" ],
   [
     "python",
     "-Im",

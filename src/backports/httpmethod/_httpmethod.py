@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2001-present Python Software Foundation
+# SPDX-FileCopyrightText: 2023-present Edgar Ramírez Mondragón <edgarrm358@gmail.com>
+#
+# SPDX-License-Identifier: PSF-2.0
+
 import sys
 
 if sys.version_info < (3, 11):
