@@ -173,6 +173,7 @@ commands = [
   [ "python", "-V" ],
   [
     "python",
+    "-W=error",
     "-Im",
     "unittest",
     "-v",

@@ -26,6 +26,7 @@ class TestHTTPMethod(unittest.TestCase):
                 HTTPMethod.PATCH,
                 HTTPMethod.POST,
                 HTTPMethod.PUT,
+                HTTPMethod.QUERY,
                 HTTPMethod.TRACE,
             ],
         )
@@ -34,4 +35,10 @@ class TestHTTPMethod(unittest.TestCase):
     def test_equality(self):
         from http import HTTPMethod as PyHTTPMethod  # ruff:ignore[import-outside-top-level]
 
-        self.assertEqual(HTTPMethod.__members__, PyHTTPMethod.__members__)
+        expected = dict(HTTPMethod.__members__)
+
+        # Specifically first shipped in 3.16.0a3
+        if sys.version_info < (3, 16):
+            del expected[HTTPMethod.QUERY]
+
+        self.assertEqual(expected, dict(PyHTTPMethod.__members__))
